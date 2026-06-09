@@ -1,6 +1,7 @@
 const express = require('express')
 const recipeController = require('../controllers/recipeController')
 const feedbackController = require('../controllers/feedbackController')
+const userController =  require('../controllers/userController')
 
 const router = new express.Router()
 
@@ -12,6 +13,9 @@ router.get('/recipes',recipeController.getAllRecipes)
 router.post('/feedbacks',feedbackController.addFeedbackController)
 //get approved feedback
 router.get('/feedbacks/approve',feedbackController.getAllApprovedFeedbackController)
+//register
+router.post('/register',userController.registerController)
+
 
 //-----------------Authorised Routes----------------------
 //-----------------Role - User ----------------------
