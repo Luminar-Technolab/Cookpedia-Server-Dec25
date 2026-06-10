@@ -1,5 +1,6 @@
 const users = require('../models/userModel')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 // register
 exports.registerController = async (req,res)=>{
@@ -18,6 +19,22 @@ exports.registerController = async (req,res)=>{
 }
 
 //login
+exports.loginController = async (req,res)=>{
+    console.log("Inside loginController");
+    const {email,password} = req.body
+    const existingUser = await users.findOne({email})
+    if(existingUser){
+       const isPasswordMatch = await bcrypt.compare(password,existingUser.password)
+       if(isPasswordMatch){
+        const token = jwt.sign({email,role:existingUser.role},process.env.JWT_SECRET)
+        res.status(200).json({user:existingUser,token})
+       }else{
+         res.status(409).json("Incorrect Email/Password...")
+       }
+    }else{
+        res.status(409).json("Invalid Email... Please Register to access Cookpedia")
+    }
+}
 
 //user picture update logic
 

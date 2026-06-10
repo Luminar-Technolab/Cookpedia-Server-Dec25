@@ -15,7 +15,8 @@ router.post('/feedbacks',feedbackController.addFeedbackController)
 router.get('/feedbacks/approve',feedbackController.getAllApprovedFeedbackController)
 //register
 router.post('/register',userController.registerController)
-
+//login
+router.post('/login',userController.loginController)
 
 //-----------------Authorised Routes----------------------
 //-----------------Role - User ----------------------
