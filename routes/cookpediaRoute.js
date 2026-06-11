@@ -2,6 +2,7 @@ const express = require('express')
 const recipeController = require('../controllers/recipeController')
 const feedbackController = require('../controllers/feedbackController')
 const userController =  require('../controllers/userController')
+const jwtMiddleware = require('../middlewares/jwtMiddleware')
 
 const router = new express.Router()
 
@@ -20,6 +21,11 @@ router.post('/login',userController.loginController)
 
 //-----------------Authorised Routes----------------------
 //-----------------Role - User ----------------------
+//view recipe
+router.get('/recipes/:id',jwtMiddleware,recipeController.viewRecipeController)
+//related recipes
+router.get('/recipes-related',jwtMiddleware,recipeController.getRelatedRecipesController)
+
 //-----------------Role -  Admin----------------------
 
 module.exports = router
