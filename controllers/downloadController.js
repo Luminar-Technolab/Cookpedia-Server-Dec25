@@ -26,3 +26,10 @@ exports.userDownloadListController = async(req,res)=>{
     const allRecipes = await downloads.find({userMail})
     res.status(200).json(allRecipes)
 }
+
+//get all download list
+exports.allDownloadListController = async(req,res)=>{
+    console.log("Inside allDownloadListController");
+    const allRecipes = await downloads.find()
+    res.status(200).json(allRecipes)
+}

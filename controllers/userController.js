@@ -48,3 +48,8 @@ exports.editUserProfileController = async (req,res)=>{
 }
 
 // all users get
+exports.getAllUsersController = async (req,res)=>{
+    console.log("Inside getAllUsersController");
+    const allUsers = await users.find({role:{$eq:"user"}})
+    res.status(200).json(allUsers)    
+}
