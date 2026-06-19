@@ -45,7 +45,7 @@ router.put('/users/:id',jwtMiddleware,multerMiddleware.single('picture'),userCon
 //-----------------Role -  Admin----------------------
 
 //get all downloads
-router.get('/downloads',adminMiddleware,downloadController.allDownloadListController)
+router.get('/downloads',jwtMiddleware,downloadController.allDownloadListController)
 //get all feedbacks
 router.get('/feedbacks',adminMiddleware,feedbackController.getAllFeedbackController)
 //get all users
